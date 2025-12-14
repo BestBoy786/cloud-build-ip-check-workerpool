@@ -27,12 +27,17 @@ steps:
   args:
     - '-s'
     - '-c'
-    - 'printf "worker Pool IP : $(curl -s [https://curlmyip.org](https://curlmyip.org))\n"'
+    - 'printf "worker Pool IP : $(curl -s https://curlmyip.org)\n"'
 
 options:
   pool:
     name: 'projects/$PROJECT_ID/locations/$_LOCATION/workerPools/$_POOL_NAME'
+  logging: CLOUD_LOGGING_ONLY
 
 substitutions:
   _LOCATION: 'us-central1'
   _POOL_NAME: 'just-pool'
+```
+
+### Mainly used for : 
+- [**Access private Google Kubernetes Engine clusters with Cloud Build private pools**](https://docs.cloud.google.com/build/docs/private-pools/accessing-private-gke-clusters-with-cloud-build-private-pools)

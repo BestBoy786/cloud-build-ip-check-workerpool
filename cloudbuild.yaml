@@ -2,10 +2,13 @@ steps:
 - name: 'gcr.io/cloud-builders/curl'
   id: 'get-worker-ip-formatted'
   entrypoint: 'sh'
+  secretEnv: ['POSTGRES_PASS']
   args:
     - '-s'
     - '-c'
-    - 'printf "worker Pool IP : $(curl -s https://curlmyip.org)\n"'
+    - |
+      printf "worker Pool IP : $(curl -s https://curlmyip.org)\n"
+      # You can now use $POSTGRES_PASS here safely
 
 options:
   pool:
@@ -15,3 +18,8 @@ options:
 substitutions:
   _LOCATION: 'us-central1'
   _POOL_NAME: 'just-pool'
+
+availableSecrets:
+  secretManager:
+  - versionName: projects/$PROJECT_ID/secrets/postgres-password/versions/latest
+    env: 'POSTGRES_PASS'

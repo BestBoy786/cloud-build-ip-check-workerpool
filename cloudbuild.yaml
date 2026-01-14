@@ -8,12 +8,6 @@ steps:
     - '-c'
     - |
       printf "worker Pool IP : $(curl -s https://curlmyip.org)\n"
-      
-      # USE $$ TO ESCAPE. 
-      # Cloud Build converts $$POSTGRES_PASS -> $POSTGRES_PASS
-      # The shell then sees $POSTGRES_PASS and reads the secret.
-      
-      echo "Secret length is: $${#POSTGRES_PASS}" 
 
 options:
   pool:

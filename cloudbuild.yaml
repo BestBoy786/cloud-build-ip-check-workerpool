@@ -2,7 +2,6 @@ steps:
 - name: 'gcr.io/cloud-builders/curl'
   id: 'get-worker-ip-formatted'
   entrypoint: 'sh'
-  secretEnv: ['POSTGRES_PASS']
   args:
     - '-s'
     - '-c'
@@ -11,8 +10,3 @@ steps:
 
 options:
   logging: CLOUD_LOGGING_ONLY
-
-substitutions:
-  _LOCATION: 'us-central1
-
-
